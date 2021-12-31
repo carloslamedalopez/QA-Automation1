@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "481ca2f6-0973-42d6-8fe0-0e123f5c50fb",
+		"name": "Desafio-Falabella-Todos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - Todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{endPointTodos}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointTodos}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().userId).to.equal(1);\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"prueba 1\");\r",
+							"    pm.expect(pm.response.json().completed).to.equal(false);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 1,\n    \"title\": \"prueba 1\",\n    \"completed\": false\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointTodos}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointTodos}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().userId).to.equal(2);\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"prueba 2\");\r",
+							"    pm.expect(pm.response.json().completed).to.equal(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 2,\n    \"title\": \"prueba 2\",\n    \"completed\": true\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointTodos}}/2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointTodos}}",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH - Todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"prueba 2\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"prueba 2\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointTodos}}/2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointTodos}}",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointTodos}}/2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointTodos}}",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Todos Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validamos que el status sea 404 al ingresar EndPoint incorrecto\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/todo",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Todos especifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validar que trae el objeto correcto especficado\", () => {\r",
+							"  pm.expect(jsonData.title).to.include(\"delectus aut autem\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{endPointTodos}}/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointTodos}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

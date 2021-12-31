@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "a58de3c3-8852-495d-aafe-635a76ce7b2e",
+		"name": "Desafio-Falabella-Photos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - Photos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"url\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointPhotos}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointPhotos}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Photos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"url\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"Prueba tittle 1\");\r",
+							"    pm.expect(pm.response.json().url).to.equal(\"https://via.placeholder.com/600/92c952\");\r",
+							"    pm.expect(pm.response.json().thumbnailUrl).to.equal(\"https://via.placeholder.com/150/92c952\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"albumId\": 1,\n    \"title\": \"Prueba tittle 1\",\n    \"url\": \"https://via.placeholder.com/600/92c952\",\n    \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointPhotos}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointPhotos}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Photos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"url\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().albumId).to.equal(2);\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"Prueba tittle 1 updated\");\r",
+							"    pm.expect(pm.response.json().url).to.equal(\"https://via.placeholder.com/600/92c951\");\r",
+							"    pm.expect(pm.response.json().thumbnailUrl).to.equal(\"https://via.placeholder.com/150/92c951\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"albumId\": 2,\n    \"title\": \"Prueba tittle 1 updated\",\n    \"url\": \"https://via.placeholder.com/600/92c951\",\n    \"thumbnailUrl\": \"https://via.placeholder.com/150/92c951\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointPhotos}}/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointPhotos}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH - Photos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"url\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"Prueba tittle 1 updated\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Prueba tittle 1 updated\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointPhotos}}/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointPhotos}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Photos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointPhotos}}/4",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointPhotos}}",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Photos Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validamos que el status sea 404 al ingresar EndPoint incorrecto\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/photo",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"photo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Photo especifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validar que trae el objeto que le especficiamos\", () => {\r",
+							"  pm.expect(jsonData.url).to.include(\"https://via.placeholder.com/600/92c952\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{endPointPhotos}}/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointPhotos}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

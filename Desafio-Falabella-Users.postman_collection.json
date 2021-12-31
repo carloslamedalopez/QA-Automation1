@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "71503f89-1651-4698-aa2d-2d116ed173c5",
+		"name": "Desafio-Falabella-Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"username\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"address\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"street\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"suite\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"city\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"zipcode\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"geo\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lat\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lng\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"phone\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"website\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"company\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"catchPhrase\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"bs\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json; charset=utf-8\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{endPointUsers}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointUsers}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"username\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"address\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"street\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"suite\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"city\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"zipcode\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"geo\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lat\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lng\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"phone\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"website\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"company\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"catchPhrase\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"bs\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().name).to.equal(\"Carlos Lameda\");\r",
+							"    pm.expect(pm.response.json().username).to.equal(\"CLameda\");\r",
+							"    pm.expect(pm.response.json().email).to.equal(\"carlos.lameda@april.biz\");    \r",
+							"    pm.expect(pm.response.json().address.street).to.equal(\"Kulas Light\");\r",
+							"    pm.expect(pm.response.json().address.suite).to.equal(\"Apt. 556\");\r",
+							"    pm.expect(pm.response.json().address.city).to.equal(\"Gwenborough\");\r",
+							"    pm.expect(pm.response.json().address.zipcode).to.equal(\"92998-3874\");\r",
+							"    pm.expect(pm.response.json().address.geo.lat).to.equal(\"-37.3159\");\r",
+							"    pm.expect(pm.response.json().address.geo.lng).to.equal(\"81.1496\");\r",
+							"    pm.expect(pm.response.json().phone).to.equal(\"1-770-736-8031 x56442\");\r",
+							"    pm.expect(pm.response.json().website).to.equal(\"hildegard.org\");\r",
+							"    pm.expect(pm.response.json().company.name).to.equal(\"Romaguera-Crona\");\r",
+							"    pm.expect(pm.response.json().company.catchPhrase).to.equal(\"Multi-layered client-server neural-net\");\r",
+							"    pm.expect(pm.response.json().company.bs).to.equal(\"harness real-time e-markets\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json; charset=utf-8\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Carlos Lameda\",\n    \"username\": \"CLameda\",\n    \"email\": \"carlos.lameda@april.biz\",\n    \"address\": {\n      \"street\": \"Kulas Light\",\n      \"suite\": \"Apt. 556\",\n      \"city\": \"Gwenborough\",\n      \"zipcode\": \"92998-3874\",\n      \"geo\": {\n        \"lat\": \"-37.3159\",\n        \"lng\": \"81.1496\"\n      }\n    },\n    \"phone\": \"1-770-736-8031 x56442\",\n    \"website\": \"hildegard.org\",\n    \"company\": {\n      \"name\": \"Romaguera-Crona\",\n      \"catchPhrase\": \"Multi-layered client-server neural-net\",\n      \"bs\": \"harness real-time e-markets\"\n    }\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointUsers}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointUsers}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"username\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"address\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"street\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"suite\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"city\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"zipcode\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"geo\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lat\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lng\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"phone\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"website\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"company\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"catchPhrase\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"bs\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().name).to.equal(\"Carlos Lameda2\");\r",
+							"    pm.expect(pm.response.json().username).to.equal(\"CLameda2\");\r",
+							"    pm.expect(pm.response.json().email).to.equal(\"carlos.lameda2@april.biz\");    \r",
+							"    pm.expect(pm.response.json().address.street).to.equal(\"Kulas Light2\");\r",
+							"    pm.expect(pm.response.json().address.suite).to.equal(\"Apt. 5562\");\r",
+							"    pm.expect(pm.response.json().address.city).to.equal(\"Gwenborough2\");\r",
+							"    pm.expect(pm.response.json().address.zipcode).to.equal(\"92998-38742\");\r",
+							"    pm.expect(pm.response.json().address.geo.lat).to.equal(\"-37.31592\");\r",
+							"    pm.expect(pm.response.json().address.geo.lng).to.equal(\"81.14962\");\r",
+							"    pm.expect(pm.response.json().phone).to.equal(\"1-770-736-8031 x564422\");\r",
+							"    pm.expect(pm.response.json().website).to.equal(\"hildegard2.org\");\r",
+							"    pm.expect(pm.response.json().company.name).to.equal(\"Romaguera-Crona2\");\r",
+							"    pm.expect(pm.response.json().company.catchPhrase).to.equal(\"Multi-layered client-server neural-net2\");\r",
+							"    pm.expect(pm.response.json().company.bs).to.equal(\"harness real-time e-markets2\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json; charset=utf-8\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Carlos Lameda2\",\n    \"username\": \"CLameda2\",\n    \"email\": \"carlos.lameda2@april.biz\",\n    \"address\": {\n      \"street\": \"Kulas Light2\",\n      \"suite\": \"Apt. 5562\",\n      \"city\": \"Gwenborough2\",\n      \"zipcode\": \"92998-38742\",\n      \"geo\": {\n        \"lat\": \"-37.31592\",\n        \"lng\": \"81.14962\"\n      }\n    },\n    \"phone\": \"1-770-736-8031 x564422\",\n    \"website\": \"hildegard2.org\",\n    \"company\": {\n      \"name\": \"Romaguera-Crona2\",\n      \"catchPhrase\": \"Multi-layered client-server neural-net2\",\n      \"bs\": \"harness real-time e-markets2\"\n    }\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointUsers}}/3",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointUsers}}",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH - Users Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"username\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"address\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"street\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"suite\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"city\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"zipcode\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"geo\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lat\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lng\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"phone\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"website\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"company\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"catchPhrase\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"bs\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
+							"    pm.expect(pm.response.json().name).to.equal(\"Carlos Lameda3\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json; charset=utf-8\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Carlos Lameda3\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointUsers}}/3",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointUsers}}",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validamos que el status sea 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header es application/json; charset=utf-8\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{endPointUsers}}/3",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointUsers}}",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - User especifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Validar que trae el objeto correcto especficado\", () => {\r",
+							"  pm.expect(jsonData.name).to.include(\"Leanne Graham\");\r",
+							"  pm.expect(jsonData.username).to.include(\"Bret\");\r",
+							"  pm.expect(jsonData.email).to.include(\"Sincere@april.biz\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{endPointUsers}}/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{endPointUsers}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Users Not Found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validamos que el status sea 404 al ingresar EndPoint incorrecto\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
