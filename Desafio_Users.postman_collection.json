@@ -1,12 +1,12 @@
 {
 	"info": {
 		"_postman_id": "71503f89-1651-4698-aa2d-2d116ed173c5",
-		"name": "Desafio-Falabella-Users",
+		"name": "Desafio_Users",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET - Users",
+			"name": "GET Users",
 			"event": [
 				{
 					"listen": "test",
@@ -69,7 +69,7 @@
 			"response": []
 		},
 		{
-			"name": "POST - Users",
+			"name": "POST Users",
 			"event": [
 				{
 					"listen": "test",
@@ -159,7 +159,7 @@
 			"response": []
 		},
 		{
-			"name": "PUT - Users",
+			"name": "PUT Users",
 			"event": [
 				{
 					"listen": "test",
@@ -250,7 +250,7 @@
 			"response": []
 		},
 		{
-			"name": "PATCH - Users Copy 2",
+			"name": "PATCH Users",
 			"event": [
 				{
 					"listen": "test",
@@ -327,7 +327,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE - Users",
+			"name": "DELETE Users",
 			"event": [
 				{
 					"listen": "test",
@@ -379,7 +379,7 @@
 			"response": []
 		},
 		{
-			"name": "GET - User especifico",
+			"name": "GET User especifico",
 			"event": [
 				{
 					"listen": "test",
@@ -416,7 +416,7 @@
 			"response": []
 		},
 		{
-			"name": "GET - Users Not Found",
+			"name": "GET Users Not Found",
 			"event": [
 				{
 					"listen": "test",

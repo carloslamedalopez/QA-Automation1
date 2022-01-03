@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "a58de3c3-8852-495d-aafe-635a76ce7b2e",
-		"name": "Desafio-Falabella-Photos",
+		"_postman_id": "481ca2f6-0973-42d6-8fe0-0e123f5c50fb",
+		"name": "Desafio_Todos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET - Photos",
+			"name": "GET Todos",
 			"event": [
 				{
 					"listen": "test",
@@ -19,11 +19,10 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
-							"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"url\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Content-Type header es application/json\", () => {\r",
@@ -40,30 +39,23 @@
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{host}}/{{endPointPhotos}}",
+					"raw": "{{host}}/{{endPointTodos}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"{{endPointPhotos}}"
+						"{{endPointTodos}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "POST - Photos",
+			"name": "POST Todos",
 			"event": [
 				{
 					"listen": "test",
@@ -76,17 +68,16 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
-							"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"url\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
-							"    pm.expect(pm.response.json().title).to.equal(\"Prueba tittle 1\");\r",
-							"    pm.expect(pm.response.json().url).to.equal(\"https://via.placeholder.com/600/92c952\");\r",
-							"    pm.expect(pm.response.json().thumbnailUrl).to.equal(\"https://via.placeholder.com/150/92c952\");\r",
+							"    pm.expect(pm.response.json().userId).to.equal(1);\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"prueba 1\");\r",
+							"    pm.expect(pm.response.json().completed).to.equal(false);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Content-Type header es application/json\", () => {\r",
@@ -108,7 +99,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"albumId\": 1,\n    \"title\": \"Prueba tittle 1\",\n    \"url\": \"https://via.placeholder.com/600/92c952\",\n    \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\n  }",
+					"raw": "{\n    \"userId\": 1,\n    \"title\": \"prueba 1\",\n    \"completed\": false\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,19 +107,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/{{endPointPhotos}}",
+					"raw": "{{host}}/{{endPointTodos}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"{{endPointPhotos}}"
+						"{{endPointTodos}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "PUT - Photos",
+			"name": "PUT Todos",
 			"event": [
 				{
 					"listen": "test",
@@ -141,21 +132,17 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
-							"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"url\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
-							"    pm.expect(pm.response.json().albumId).to.equal(2);\r",
-							"    pm.expect(pm.response.json().title).to.equal(\"Prueba tittle 1 updated\");\r",
-							"    pm.expect(pm.response.json().url).to.equal(\"https://via.placeholder.com/600/92c951\");\r",
-							"    pm.expect(pm.response.json().thumbnailUrl).to.equal(\"https://via.placeholder.com/150/92c951\");\r",
+							"    pm.expect(pm.response.json().userId).to.equal(2);\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"prueba 2\");\r",
+							"    pm.expect(pm.response.json().completed).to.equal(true);\r",
 							"});\r",
-							"\r",
-							"\r",
 							"\r",
 							"pm.test(\"Content-Type header es application/json\", () => {\r",
 							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
@@ -176,7 +163,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"albumId\": 2,\n    \"title\": \"Prueba tittle 1 updated\",\n    \"url\": \"https://via.placeholder.com/600/92c951\",\n    \"thumbnailUrl\": \"https://via.placeholder.com/150/92c951\"\n  }",
+					"raw": "{\n    \"userId\": 2,\n    \"title\": \"prueba 2\",\n    \"completed\": true\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -184,20 +171,20 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/{{endPointPhotos}}/1",
+					"raw": "{{host}}/{{endPointTodos}}/2",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"{{endPointPhotos}}",
-						"1"
+						"{{endPointTodos}}",
+						"2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "PATCH - Photos",
+			"name": "PATCH Todos",
 			"event": [
 				{
 					"listen": "test",
@@ -210,15 +197,14 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Validamos que la estructura de los posts sea la correcta\", () => {\r",
-							"    pm.expect(pm.response.text()).to.include(\"albumId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"url\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"thumbnailUrl\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"completed\");\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Validamos que los datos de los posts sea la correcta\", () => {\r",
-							"    pm.expect(pm.response.json().title).to.equal(\"Prueba tittle 1 updated\");\r",
+							"    pm.expect(pm.response.json().title).to.equal(\"prueba 2\");\r",
 							"});\r",
 							"\r",
 							"pm.test(\"Content-Type header es application/json\", () => {\r",
@@ -240,7 +226,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Prueba tittle 1 updated\"\n  }",
+					"raw": "{\n    \"title\": \"prueba 2\"\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -248,20 +234,20 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/{{endPointPhotos}}/1",
+					"raw": "{{host}}/{{endPointTodos}}/2",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"{{endPointPhotos}}",
-						"1"
+						"{{endPointTodos}}",
+						"2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "DELETE - Photos",
+			"name": "DELETE Todos",
 			"event": [
 				{
 					"listen": "test",
@@ -280,6 +266,7 @@
 							"pm.test(\"Tiempo de respuesta debe ser menor a 500\", function () {\r",
 							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
 							"});\r",
+							"\r",
 							""
 						],
 						"type": "text/javascript"
@@ -299,20 +286,20 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/{{endPointPhotos}}/4",
+					"raw": "{{host}}/{{endPointTodos}}/2",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"{{endPointPhotos}}",
-						"4"
+						"{{endPointTodos}}",
+						"2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GET - Photos Not Found",
+			"name": "GET Todos Not Found",
 			"event": [
 				{
 					"listen": "test",
@@ -332,19 +319,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/photo",
+					"raw": "{{host}}/todo",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"photo"
+						"todo"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GET - Photo especifico",
+			"name": "GET Todos especifico",
 			"event": [
 				{
 					"listen": "test",
@@ -352,11 +339,9 @@
 						"exec": [
 							"const jsonData = pm.response.json();\r",
 							"\r",
-							"pm.test(\"Validar que trae el objeto que le especficiamos\", () => {\r",
-							"  pm.expect(jsonData.url).to.include(\"https://via.placeholder.com/600/92c952\");\r",
+							"pm.test(\"Validar que trae el objeto correcto especficado\", () => {\r",
+							"  pm.expect(jsonData.title).to.include(\"delectus aut autem\");\r",
 							"});\r",
-							"\r",
-							"\r",
 							"\r",
 							""
 						],
@@ -368,12 +353,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/{{endPointPhotos}}/1",
+					"raw": "{{host}}/{{endPointTodos}}/1",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"{{endPointPhotos}}",
+						"{{endPointTodos}}",
 						"1"
 					]
 				}
